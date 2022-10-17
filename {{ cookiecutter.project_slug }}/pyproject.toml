@@ -35,7 +35,7 @@ packages = [
 ]
 
 [tool.poetry.dependencies]
-python = "{{ cookiecutter.python_version }}"
+python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.dev-dependencies]
 black="*"
