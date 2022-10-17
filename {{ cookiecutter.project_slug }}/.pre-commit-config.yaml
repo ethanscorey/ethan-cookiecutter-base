@@ -1,3 +1,4 @@
+repos:
   - repo: https://github.com/psf/black
     rev: 22.10.0
     hooks:
@@ -15,18 +16,18 @@
           - flake8-bugbear
           - flake8-comprehensions
           - flake8-simplify
-   - repo: https://github.com/pre-commit/pre-commit-hooks
-     rev: v2.3.0
-     hooks:
-       - id: check-yaml
-       - id: end-of-file-fixer
-       - id: trailing-whitespace
-       - id: check-docstring-first
-       - id: check-executables-have-shebangs
-       - id: check-json
-       - id: check-toml
-   {% if cookiecutter.mypy == "y" -%}
-   - repo: https://github.com/pre-commit/mirrors-mypy
-     rev: 0.94.0
-     hooks:
-       - id: mypy{% endif %}
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+      - id: check-yaml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-docstring-first
+      - id: check-executables-have-shebangs
+      - id: check-json
+      - id: check-toml
+  {% if cookiecutter.mypy == "y" -%}
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: 0.94.0
+    hooks:
+      - id: mypy{% endif %}
