@@ -24,20 +24,17 @@ classifiers=[
 {%- endif %}
     'Natural Language :: English',
     'Programming Language :: Python :: 3',
-    'Programming Language :: Python :: 3.5',
-    'Programming Language :: Python :: 3.6',
-    'Programming Language :: Python :: 3.7',
-    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: {{ cookiecutter.python_version }}',
 ]
 packages = [
-    { include = "{{ cookiecutter.project_slug }}" },
+    { include = "src" },
     { include = "tests", format = "sdist" },
 ]
 
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.python_version }}"
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev-dependencies]
 black="*"
 coverage = "*"
 flake8 = "*"
@@ -52,9 +49,6 @@ pydocstyle = "*"
 sphinx = "*"
 tox = "*"
 
-[tool.black]
-line-length = 79
-
 [tool.isort]
 profile = "black"
 
@@ -64,5 +58,5 @@ warn_return_any = true
 
 {% endif %}
 [build-system]
-requires = ["poetry>=0.12"]
+requires = ["poetry>=1.2.2"]
 build-backend = "poetry.masonry.api"

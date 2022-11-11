@@ -4,8 +4,6 @@ if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
 
-# Then, activate project conda env and install poetry dependencies:
-# Note that this only works if the user has run `conda init` in their own
-# Bash environment.
-conda activate {{ cookiecutter.project_slug }}
+source .env
 poetry install
+source "$(poetry env info --path)/bin/activate"
