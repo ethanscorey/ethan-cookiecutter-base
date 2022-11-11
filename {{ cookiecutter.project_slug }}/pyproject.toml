@@ -34,7 +34,7 @@ packages = [
 [tool.poetry.dependencies]
 python = "^{{ cookiecutter.python_version }}"
 
-[tool.poetry.group.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 black="*"
 coverage = "*"
 flake8 = "*"
