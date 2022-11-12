@@ -27,7 +27,7 @@ classifiers=[
     'Programming Language :: Python :: {{ cookiecutter.python_version }}',
 ]
 packages = [
-    { include = "src" },
+    { include = "{{ cookiecutter.project_slug}}", from = "src" },
     { include = "tests", format = "sdist" },
 ]
 
@@ -48,9 +48,13 @@ pre-commit="*"
 pydocstyle = "*"
 sphinx = "*"
 tox = "*"
+pytest = "*"
 
 [tool.isort]
 profile = "black"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
 
 {% if cookiecutter.mypy == "y" -%}
 [tool.mypy]
