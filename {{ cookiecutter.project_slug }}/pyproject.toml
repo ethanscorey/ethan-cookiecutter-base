@@ -46,9 +46,12 @@ isort = "*"
 mypy = "*"{% endif %}
 pre-commit="*"
 pydocstyle = "*"
-sphinx = "*"
-tox = "*"
 pytest = "*"
+pytest-cov = "*"
+pytest-mock = "*"
+safety = "*"
+sphinx = "*"
+toml = "*"
 
 [tool.isort]
 profile = "black"
@@ -59,8 +62,15 @@ pythonpath = ["src"]
 {% if cookiecutter.mypy == "y" -%}
 [tool.mypy]
 warn_return_any = true
+exclude = [
+    '^docs/',  # Exclude docs directory
+    '^tests/',  # Exclude test directory
+]
 
 {% endif %}
+[tool.pydocstyle]
+match = "^src""
+
 [build-system]
 requires = ["poetry>=1.2.2"]
 build-backend = "poetry.masonry.api"

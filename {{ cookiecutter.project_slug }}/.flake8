@@ -1,3 +1,8 @@
 [flake8]
 max-line-length = 88
 extend-ignore = E203,E231
+select = B,B9,BLK,C,E,F,I,S,W
+exclude = 
+    .git
+    __pycache__
+    docs/conf.py
