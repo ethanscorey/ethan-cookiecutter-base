@@ -44,6 +44,7 @@ flake8-simplify = "*"
 isort = "*"
 {% if cookiecutter.mypy == "y" -%}
 mypy = "*"{% endif %}
+nox = "*"
 pre-commit="*"
 pydocstyle = "*"
 pytest = "*"
