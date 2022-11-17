@@ -35,7 +35,7 @@ packages = [
 python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.group.dev.dependencies]
-black="*"
+black = "*"
 coverage = "*"
 flake8 = "*"
 flake8-bugbear = "*"
@@ -70,7 +70,7 @@ exclude = [
 
 {% endif %}
 [tool.pydocstyle]
-match = "^src""
+match = "^src"
 
 [build-system]
 requires = ["poetry>=1.2.2"]
