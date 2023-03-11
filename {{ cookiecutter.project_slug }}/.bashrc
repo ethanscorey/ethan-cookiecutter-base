@@ -4,6 +4,9 @@ if [ -f ~/.bashrc ]; then
     source ~/.bashrc
 fi
 
-source .env
+if [ -f .env ]; then
+    source .env
+fi
+
 poetry install
 source "$(poetry env info --path)/bin/activate"
