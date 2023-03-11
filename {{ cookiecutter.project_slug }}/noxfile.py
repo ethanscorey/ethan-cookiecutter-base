@@ -30,7 +30,7 @@ def safety(session):
     session.run("safety", "check", "--file=pyproject.toml", "--full-report")
 
 
-{% if cookiecutter.mypy %}
+{% if cookiecutter.mypy == "y" -%}
 @session(python=VERSIONS)
 def mypy(session):
     args = session.posargs or ["src"]
@@ -38,8 +38,9 @@ def mypy(session):
     session.install("mypy")
     session.run("mypy", "--install-types")
     session.run("mypy", *args)
-{% endif %}
 
+
+{% endif %}
 @session(python=VERSIONS)
 def format(session):
     args = session.posargs or LOCATIONS

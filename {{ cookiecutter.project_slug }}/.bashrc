@@ -1,7 +1,7 @@
 # Custom .bashrc file to facilitate activating the project environment
 # First, source user's .bashrc:
 if [ -f ~/.bashrc ]; then
-    . ~/.bashrc
+    source ~/.bashrc
 fi
 
 source .env

@@ -4,4 +4,4 @@ import {{ cookiecutter.project_slug }}
 
 def test_installed() -> None:
     """Test that project can be imported."""
-    assert activecampaign_stripe_sync
+    assert {{ cookiecutter.project_slug }}

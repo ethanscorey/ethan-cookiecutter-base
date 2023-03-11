@@ -41,6 +41,7 @@ flake8 = "*"
 flake8-bugbear = "*"
 flake8-comprehensions = "*"
 flake8-simplify = "*"
+hypothesis = "*"
 isort = "*"
 {% if cookiecutter.mypy == "y" -%}
 mypy = "*"{% endif %}
