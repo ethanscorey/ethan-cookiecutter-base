@@ -7,7 +7,8 @@ SHELL_NAME=$(basename "$SHELL")
 if [ "$SHELL_NAME" = "bash" ]; then
   exec bash --rcfile .bashrc -i
 elif [ "$SHELL_NAME" = "zsh" ]; then
-  exec zsh -i -c 'source .zshrc && exec zsh'
+  poetry install
+  source "$(poetry env info --path)/bin/activate"
 else
   echo "Unsupported shell: $SHELL_NAME"
   exit 1

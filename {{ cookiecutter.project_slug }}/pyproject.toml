@@ -46,6 +46,7 @@ isort = "*"
 {% if cookiecutter.mypy == "y" -%}
 mypy = "*"{% endif %}
 nox = "*"
+nox_poetry = "*"
 pre-commit="*"
 pydocstyle = "*"
 pytest = "*"
