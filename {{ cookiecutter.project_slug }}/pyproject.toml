@@ -35,14 +35,9 @@ packages = [
 python = "^{{ cookiecutter.python_version }}"
 
 [tool.poetry.group.dev.dependencies]
-black = "*"
+[tool.poetry.group.dev.dependencies]
 coverage = "*"
-flake8 = "*"
-flake8-bugbear = "*"
-flake8-comprehensions = "*"
-flake8-simplify = "*"
 hypothesis = "*"
-isort = "*"
 {% if cookiecutter.mypy == "y" -%}
 mypy = "*"{% endif %}
 nox = "*"
@@ -55,9 +50,8 @@ pytest-mock = "*"
 safety = "*"
 sphinx = "*"
 toml = "*"
-
-[tool.isort]
-profile = "black"
+ruff = "*"
+typeguard = "*"
 
 [tool.pytest.ini_options]
 pythonpath = ["src"]
@@ -65,15 +59,81 @@ pythonpath = ["src"]
 {% if cookiecutter.mypy == "y" -%}
 [tool.mypy]
 warn_return_any = true
+strict = true
+warn_unreachable = true
+pretty = true
+show_column_numbers = true
+show_error_context = true
 exclude = [
     '^docs/',  # Exclude docs directory
     '^tests/',  # Exclude test directory
 ]
 
 {% endif %}
-[tool.pydocstyle]
-match = "^src"
+
+[tool.ruff]
+target-version = "py{{ cookiecutter.python_version.replace('.', '') }}"
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "W",
+    "C",
+    "B",
+    "I",
+    "N",
+    "D",
+    "UP",
+    "YTT",
+    "ANN",
+    "S",
+    "BLE",
+    "FBT",
+    "A",
+    "COM",
+    "C4",
+    "EM",
+    "ISC",
+    "ICN",
+    "G",
+    "PIE",
+    "T20",
+    "PT",
+    "Q",
+    "RSE",
+    "RET",
+    "SLF",
+    "SIM",
+    "TCH",
+    "TID",
+    "ARG",
+    "PTH",
+    "TD",
+    "FIX",
+    "ERA",
+    "PD",
+    "PL",
+    "TRY",
+    "FLY",
+    "PERF",
+    "LOG",
+    "RUF",
+]
+ignore = ["COM812", "ISC001"]
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*.py" = ["S101", "ANN", "PLR2004"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.pydoclint]
+style = "numpy"
 
 [build-system]
-requires = ["poetry>=1.2.2"]
+requires = ["poetry-core"]
 build-backend = "poetry.masonry.api"

@@ -5,29 +5,73 @@ VERSIONS = ["{{ cookiecutter.python_version }}"]
 
 
 @session(python=VERSIONS)
-def tests(session):
+def tests(session: session) -> None:
+    """Run test suit, skipping e2e tests by default.
+
+    Arguments
+    ---------
+    session : session
+        The nox session.
+    """
     args = session.posargs or ["--cov", "-m", "not e2e"]
     session.run("poetry", "install", external=True)
     session.run("pytest", *args)
 
 
 @session(python=VERSIONS)
-def lint(session):
+def format_files(session: session) -> None:
+    """Format Python files with ruff.
+
+    Arguments
+    ---------
+    session : session
+        The nox session.
+    """
     args = session.posargs or LOCATIONS
-    session.install(
-        "flake8",
-        "flake8-bandit",
-        "flake8-black",
-        "flake8-bugbear",
-        "flake8-isort",
-    )
-    session.run("flake8", *args)
+    session.install("ruff")
+    session.run("ruff", "format", *args)
 
 
 @session(python=VERSIONS)
 def safety(session):
+    """Check pyproject.toml for known vulnerabilities.
+
+    Arguments
+    ---------
+    session : session
+        The nox session.
+
+    """
     session.install("safety")
     session.run("safety", "check", "--file=pyproject.toml", "--full-report")
+
+
+@session(python=VERSIONS)
+def lint(session: session) -> None:
+    """Lint Python files with ruff.
+
+    Arguments
+    ---------
+    session : session
+        The nox session.
+    """
+    args = session.posargs or LOCATIONS
+    session.install("ruff")
+    session.run("ruff", "check", "--fix", *args)
+
+
+@session(name="doc-lint", python=VERSIONS[0])
+def doc_lint(session: session) -> None:
+    """Lint docstrings with pydoclint.
+
+    Arguments
+    ---------
+    session : session
+        The nox session.
+    """
+    args = session.posargs or LOCATIONS
+    session.install("pydoclint")
+    session.run("pydoclint", *args)
 
 
 {% if cookiecutter.mypy == "y" %}
